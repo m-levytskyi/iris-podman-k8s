@@ -1,9 +1,7 @@
 import joblib
 from flask import Flask, request, jsonify
 
-# Load the model
-model = joblib.load(MODEL_PATH)
-
+model = joblib.load('/app/model.pkl')
 app = Flask(__name__)
 
 @app.route('/predict', methods=['POST'])
