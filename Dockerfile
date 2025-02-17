@@ -9,9 +9,9 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Copy all scripts into the container
-COPY initialize_db.py train_model.py predict.py  /app/
-COPY templates /app/templates
-
+# COPY initialize_db.py train_model.py predict.py  /app/
+# COPY templates /app/templates
+COPY . . 
 # Initialize the database and train the model
 RUN python initialize_db.py && python train_model.py
 

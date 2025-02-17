@@ -4,19 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iris Prediction</title>
+    <style>
+        .container {
+            display: flex;
+            align-items: center;
+        }
+        .form-container {
+            flex: 1;
+        }
+        .image-container {
+            margin-left: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
     <h1>Enter Iris Flower Measurements</h1>
-    <form action="/predict" method="post">
-        <label for="sepal_length">Sepal Length:</label><br>
-        <input type="text" id="sepal_length" name="sepal_length"><br><br>
-        <label for="sepal_width">Sepal Width:</label><br>
-        <input type="text" id="sepal_width" name="sepal_width"><br><br>
-        <label for="petal_length">Petal Length:</label><br>
-        <input type="text" id="petal_length" name="petal_length"><br><br>
-        <label for="petal_width">Petal Width:</label><br>
-        <input type="text" id="petal_width" name="petal_width"><br><br>
-        <input type="submit" value="Predict">
-    </form>
+    <div class="container">
+        <div class="form-container">
+            <form action="/predict" method="post">
+                <label for="sepal_length">Sepal Length:</label><br>
+                <input type="text" id="sepal_length" name="sepal_length"><br><br>
+                <label for="sepal_width">Sepal Width:</label><br>
+                <input type="text" id="sepal_width" name="sepal_width"><br><br>
+                <label for="petal_length">Petal Length:</label><br>
+                <input type="text" id="petal_length" name="petal_length"><br><br>
+                <label for="petal_width">Petal Width:</label><br>
+                <input type="text" id="petal_width" name="petal_width"><br><br>
+                <input type="submit" value="Predict">
+            </form>
+        </div>
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='iris.png') }}" alt="Iris Flower">
+        </div>
+    </div>
 </body>
 </html>
