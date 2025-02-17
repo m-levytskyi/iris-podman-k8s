@@ -1,4 +1,4 @@
-# Machine Learning Project with Flask and Docker
+# Machine Learning Project with Flask and Podman
 
 This project demonstrates a simple machine learning workflow using Flask and Docker. It includes database initialization, model training, and an inference API.
 
@@ -6,10 +6,18 @@ This project demonstrates a simple machine learning workflow using Flask and Doc
 
 docker-ml-project/
 ├── Dockerfile
-├── requirements.txt
 ├── initialize_db.py
-├── train_model.py
-└── predict.py
+├── iris.db
+├── model.pkl
+├── predict.py
+├── README.md
+├── requirements.txt
+├── static
+│   └── iris.png
+├── templates
+│   ├── index.html
+│   └── result.html
+└── train_model.py
 
 
 ## Features
@@ -43,9 +51,3 @@ docker-ml-project/
     podman run -d -p 8080:80 ml_project\:latest
     ```
 2. Access the Flask application at http://localhost:8080.
-
-### Making Predictions
-Use curl or any API client to send a POST request to the /predict endpoint:
-    ```
-    curl -X POST http://localhost:8080/predict -H "Content-Type: application/json" -d '{"features": [5.1, 3.5, 1.4, 0.2]}'
-    ```
