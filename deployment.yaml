@@ -11,7 +11,7 @@ metadata:
   name: mlproject-pod
 spec:
   containers:
-  - image: mlevytskyi089/ml_project:latest
+  - image: docker.io/mlevytskyi089/ml_project:latest
     name: mlproject
     ports:
     - containerPort: 80
