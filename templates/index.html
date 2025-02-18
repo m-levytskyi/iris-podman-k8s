@@ -25,21 +25,31 @@
     <h1>Enter Iris Flower Measurements</h1>
     <div class="container">
         <div class="form-container">
-            <form action="/predict" method="post">
-                <label for="sepal_length">Sepal Length:</label><br>
+            <form id="irisForm" action="/predict" method="post">
+                <label for="sepal_length">Sepal Length (4.3-7.9):</label><br>
                 <input type="text" id="sepal_length" name="sepal_length"><br><br>
-                <label for="sepal_width">Sepal Width:</label><br>
+                <label for="sepal_width">Sepal Width (2.0-4.4):</label><br>
                 <input type="text" id="sepal_width" name="sepal_width"><br><br>
-                <label for="petal_length">Petal Length:</label><br>
+                <label for="petal_length">Petal Length (1.0-6.9):</label><br>
                 <input type="text" id="petal_length" name="petal_length"><br><br>
-                <label for="petal_width">Petal Width:</label><br>
+                <label for="petal_width">Petal Width (0.1-2.5):</label><br>
                 <input type="text" id="petal_width" name="petal_width"><br><br>
                 <input type="submit" value="Predict">
+                <button type="button" onclick="randomizeInputs()">Randomize Inputs</button>
             </form>
         </div>
         <div class="image-container">
             <img src="{{ url_for('static', filename='iris.png') }}" alt="Iris Flower">
         </div>
     </div>
+
+    <script>
+        function randomizeInputs() {
+            document.getElementById('sepal_length').value = (Math.random() * (7.9 - 4.3) + 4.3).toFixed(2);
+            document.getElementById('sepal_width').value = (Math.random() * (4.4 - 2.0) + 2.0).toFixed(2);
+            document.getElementById('petal_length').value = (Math.random() * (6.9 - 1.0) + 1.0).toFixed(2);
+            document.getElementById('petal_width').value = (Math.random() * (2.5 - 0.1) + 0.1).toFixed(2);
+        }
+    </script>
 </body>
 </html>
