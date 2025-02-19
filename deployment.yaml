@@ -12,6 +12,7 @@ metadata:
 spec:
   containers:
   - image: docker.io/mlevytskyi089/ml_project:latest
+    imagePullPolicy: Always
     name: mlproject
     ports:
     - containerPort: 80
