@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: your-registry/api:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: AI_AGENT_URL
+          value: "http://ai-agent-service"
