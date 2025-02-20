@@ -1,27 +1,43 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
 import joblib
+import requests
 
 app = Flask(__name__)
-model = joblib.load('/app/model.pkl')
 
-# Map class indices to class names
-class_names = {0: "setosa", 1: "versicolor", 2: "virginica"}
+# Load the model
+model = joblib.load('model/model.pkl')
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+# Configuration for external APIs
+LLM_API_URL = "http://your-llm-api-endpoint"  # Replace with your LLM API endpoint
+IMAGE_GENERATION_API_URL = "http://your-image-generation-api-endpoint"  # Replace with your image generation API endpoint
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    features = [
-        float(request.form['sepal_length']),
-        float(request.form['sepal_width']),
-        float(request.form['petal_length']),
-        float(request.form['petal_width'])
-    ]
-    prediction = model.predict([features])
-    predicted_class_name = class_names[prediction[0]]
-    return render_template('result.html', prediction=predicted_class_name)
+    try:
+        # Parse input data
+        data = request.json
+        features = [data['sepal_length'], data['sepal_width'], data['petal_length'], data['petal_width']]
+
+        # Make prediction
+        prediction = model.predict([features])
+        species = prediction[0]
+
+        # Call LLM API to get species description
+        description_response = requests.post(LLM_API_URL, json={"species": species})
+        description = description_response.json().get("description", "No description available.")
+
+        # Call Image Generation API to get flower image
+        image_response = requests.post(IMAGE_GENERATION_API_URL, json={"species": species})
+        image_url = image_response.json().get("image_url", "")
+
+        # Return prediction result along with description and image URL
+        return jsonify({
+            "species": species,
+            "description": description,
+            "image_url": image_url
+        })
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run(host='0.0.0.0', port=5000)
