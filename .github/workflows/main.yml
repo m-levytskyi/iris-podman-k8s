@@ -51,6 +51,9 @@ jobs:
     - name: Set up Kubectl
       uses: azure/setup-kubectl@v1
 
+    - name: Create Kind Cluster
+      uses: helm/kind-action@v1
+
     - name: Configure Kubeconfig
       uses: azure/k8s-set-context@v4
       with:

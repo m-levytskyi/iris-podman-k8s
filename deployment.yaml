@@ -7,13 +7,13 @@ kind: Pod
 metadata:
   creationTimestamp: "2025-02-17T10:13:30Z"
   labels:
-    app: mlproject-pod
-  name: mlproject-pod
+    app: iris-pod
+  name: iris-pod
 spec:
   containers:
-  - image: docker.io/mlevytskyi089/ml_project:latest
+  - image: docker.io/mlevytskyi089/iris:latest
     imagePullPolicy: Always
-    name: mlproject
+    name: iris
     ports:
     - containerPort: 80
       hostPort: 8080
