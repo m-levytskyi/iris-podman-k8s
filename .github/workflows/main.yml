@@ -54,15 +54,8 @@ jobs:
     - name: Create Kind Cluster
       uses: helm/kind-action@v1
 
-    - name: Configure Kubeconfig
-      uses: azure/k8s-set-context@v4
-      with:
-        method: kubeconfig
-        kubeconfig: ${{ secrets.KUBECONFIG }}
 
     - name: Deploy to Kubernetes
       run: |
         kubectl apply -f deployment.yaml
         kubectl apply -f service.yaml
-      env:
-        KUBECONFIG: ${{ secrets.KUBECONFIG }}
