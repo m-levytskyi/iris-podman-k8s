@@ -42,7 +42,7 @@ jobs:
 
     - name: Load Docker image into Kind cluster
       run: |
-        kind load docker-image mlevytskyi089/iris:latest
+        kind load docker-image mlevytskyi089/iris:latest --name kind-cluster
 
     - name: Deploy to Kind cluster
       run: |
