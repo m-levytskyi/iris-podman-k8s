@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import joblib
 
 app = Flask(__name__)
-model = joblib.load('/app/model.pkl')
+model = joblib.load('model.pkl')
 
 # Map class indices to class names
 class_names = {0: "setosa", 1: "versicolor", 2: "virginica"}
