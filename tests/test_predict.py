@@ -1,5 +1,5 @@
 import unittest
-from predict import app
+from iris.predict import app
 
 class PredictTestCase(unittest.TestCase):
     def setUp(self):
