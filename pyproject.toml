@@ -12,13 +12,14 @@ dependencies = [
     "pandas (>=2.2.3,<3.0.0)",
     "joblib (>=1.4.2,<2.0.0)",
     "scikit-learn (>=1.6.1,<2.0.0)",
-    "pylint (>=3.3.5,<4.0.0)"
+    "werkzeug (>=3.1.9,<4.0.0)"
 ]
 
 [tool.poetry]
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"
+pylint = { version = "^4.0.9", python = ">=3.10" }
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
